@@ -2,27 +2,54 @@ var xhr = new XMLHttpRequest();
 var API_URL = "http://localhost:3000"
 var module = "patient"
 
-function buildReq(api_url, resource) {
-}
-
+// CRUD HANDLERS
 window.onload = function () {
+    console.log("list")
     fetchPatients();
 };
-
-document.querySelector("#submit").addEventListener("click", function (e) {
-    // postPatient();
-    e.preventDefault();
-    removePatient();
-});
 
 function fetchPatients() {
     xhr.open('GET', API_URL + "/patients");
     xhr.onload = function () {
         var patients = JSON.parse(xhr.responseText);
-        console.log(patients);
+        renderPatientList(patients);
     }
     xhr.send(null);
 }
+
+function renderPatientList(patients) {
+    console.log(patients)
+    var patientList = '';
+    for (var i = 0; i < patients.length; i++) {
+        patientList += '<li class="patient-row" id="patient-row">'
+            + patients[i].id + " - "
+            + patients[i].name + " - "
+            + patients[i].age
+            + ' <button "default-btn remove-btn" id="edit-btn-' + i + '">Editar</button>'
+            + ' <button "default-btn remove-btn" id="remove-btn-' + i + '">Remover</button>'
+            + '</li > ';
+    }
+    document.querySelector("#patient-list").innerHTML = patientList;
+
+    for (var i = 0; i < patients.length; i++) {
+        document.querySelector("#edit-btn-" + i).addEventListener('click', function () {
+            console.log("edit")
+            editPatient();
+        });
+        document.querySelector("#remove-btn-" + i).addEventListener('click', function () {
+            console.log("remove")
+            editPatient();
+        });
+    }
+}
+
+
+
+
+
+
+
+
 
 function postPatient() {
     var data = {};
