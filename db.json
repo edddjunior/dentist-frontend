@@ -1,0 +1,24 @@
+{
+  "patients": [
+    {
+      "id": 1,
+      "name": "Edson Bergamo",
+      "age": 20
+    },
+    {
+      "id": 2,
+      "name": "Robson Melchiades",
+      "age": 25
+    },
+    {
+      "id": 3,
+      "name": "José Guilherme",
+      "age": 52
+    },
+    {
+      "id": 4,
+      "nome": "Ulisses",
+      "idade": 23
+    }
+  ]
+}
